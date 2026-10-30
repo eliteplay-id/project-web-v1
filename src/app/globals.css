@@ -1,0 +1,381 @@
+@import "tailwindcss";
+
+/* Tema via CSS variable — Tailwind v4 @theme inline merujuk ke sini.
+   Default = dark; .light menimpa jadi terang. */
+:root {
+  --abyss: #08080c;
+  --panel: #14141d;
+  --panel-2: #1b1b27;
+  --line: #262633;
+  --elite-blue: #2d7fff;
+  --elite-cyan: #00c2ff;
+  --elite-red: #ff1e2d;
+  --elite-dark-red: #b30a1e;
+  --elite-silver: #e8edf5;
+  --muted: #9aa3b5;
+  color-scheme: dark;
+}
+
+.light {
+  --abyss: #f4f5f7;
+  --panel: #ffffff;
+  --panel-2: #eceef2;
+  --line: #d9dce3;
+  --elite-silver: #16161c;
+  --muted: #5b6272;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-abyss: var(--abyss);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-line: var(--line);
+  --color-elite-blue: var(--elite-blue);
+  --color-elite-cyan: var(--elite-cyan);
+  --color-elite-red: var(--elite-red);
+  --color-elite-dark-red: var(--elite-dark-red);
+  --color-elite-silver: var(--elite-silver);
+  --color-muted: var(--muted);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-nav: var(--font-nav);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--abyss);
+  color: var(--elite-silver);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.47;
+  letter-spacing: -0.012em;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.brand-underline {
+  background: linear-gradient(90deg, #ff1e2d 0%, #7a1f4d 45%, #2d7fff 75%, #00c2ff 100%);
+}
+
+.btn-elite {
+  background: linear-gradient(135deg, #2d7fff 0%, #00c2ff 100%);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ff1e2d 0%, #b30a1e 100%);
+}
+
+.glow-blue {
+  background: radial-gradient(closest-side, rgba(45, 127, 255, 0.28), transparent);
+}
+
+.glow-red {
+  background: radial-gradient(closest-side, rgba(255, 30, 45, 0.22), transparent);
+}
+
+.card-hover {
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(45, 127, 255, 0.55);
+  box-shadow: 0 12px 40px -12px rgba(45, 127, 255, 0.45);
+}
+
+::selection {
+  background: rgba(45, 127, 255, 0.5);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #08080c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262633;
+  border-radius: 8px;
+}
+
+/* Cross-browser hidden scrollbar for horizontal thumbnail strips. */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Konten About plek Steam: gambar/video/list dari store.steampowered.com. */
+.steam-about {
+  margin: 0;
+  padding: 0;
+}
+.steam-about > :first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.steam-about p,
+.steam-about h3,
+.steam-about h4 {
+  margin: 0 0 1rem;
+}
+
+.steam-about h3,
+.steam-about h4 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-elite-silver);
+}
+
+.steam-about ul,
+.steam-about ol {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.steam-about ul {
+  list-style: disc;
+}
+
+.steam-about ol {
+  list-style: decimal;
+}
+
+.steam-about strong,
+.steam-about b {
+  color: var(--color-elite-silver);
+}
+
+.steam-about a {
+  color: var(--color-elite-cyan);
+}
+
+.steam-about a:hover {
+  text-decoration: underline;
+}
+
+.steam-about img,
+.steam-about video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 0 1rem;
+  background: #000;
+}
+/* Gambar/video pertama = start bareng ikon 7, tanpa margin atas */
+.steam-about > img:first-child,
+.steam-about > video:first-child {
+  margin-top: 0;
+}
+
+.steam-about video {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .card-hover,
+  .card-hover:hover {
+    transform: none;
+  }
+
+  .ctrack {
+    animation: none;
+  }
+
+  .hero-drift {
+    animation: none;
+  }
+}
+
+/* Cover wall — bridgeplay-style marquee, ELITEPLAY skin */
+.cwall {
+  position: absolute;
+  inset: -12% -25% -22%;
+  overflow: hidden;
+  perspective: 1600px;
+  opacity: 0.32;
+  mask: radial-gradient(85% 90% at 50% 45%, #000 55%, transparent 95%);
+  -webkit-mask: radial-gradient(85% 90% at 50% 45%, #000 55%, transparent 95%);
+}
+
+.cwall-inner {
+  display: grid;
+  gap: 16px;
+  height: 100%;
+  align-content: stretch;
+  padding-top: 2%;
+  transform: rotateX(32deg) rotateZ(10deg) translateY(0);
+  transform-origin: 50% 0;
+}
+
+.crow {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.ctrack {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  height: 100%;
+  animation: wall-run 90s linear infinite;
+}
+
+.crow:nth-child(1) .ctrack {
+  animation-direction: reverse;
+  animation-duration: 90s;
+}
+
+.crow:nth-child(2) .ctrack {
+  animation-duration: 110s;
+}
+
+.crow:nth-child(3) .ctrack {
+  animation-direction: reverse;
+  animation-duration: 75s;
+}
+
+.crow:nth-child(4) .ctrack {
+  animation-duration: 100s;
+}
+
+.ctrack img {
+  width: clamp(110px, 9vw, 150px);
+  height: 100%;
+  min-height: 220px;
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+  object-fit: cover;
+  flex: none;
+  background: #111;
+}
+
+@keyframes wall-run {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Detail hero: slow cinematic zoom, Steam-store feel */
+@keyframes hero-drift {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+.hero-drift {
+  animation: hero-drift 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Navbar search: matikan tombol X bawaan browser (input type=search)
+   — kita sudah punya tombol X sendiri, biar tidak dobel. */
+#nav-search::-webkit-search-cancel-button,
+#nav-search::-webkit-search-decoration,
+#m-search::-webkit-search-cancel-button,
+#m-search::-webkit-search-decoration {
+  display: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+#nav-search::-ms-clear,
+#m-search::-ms-clear {
+  display: none;
+}
+
+/* Navbar search wipe: TIDAK pakai lingkaran raksasa lagi (bocor/noda).
+   Lapisan gradient pas selebar pil (inset-0) + scaleX dari kanan.
+   Class Tailwind scale-x-0/scale-x-100 + origin-right yang atur. */
+
+/* Form search: ikut slide-in halus dari kanan saat wipe terbuka. */
+@keyframes search-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.search-form-in {
+  animation: search-slide-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+/* Dropdown saran: muncul halus dari atas pil. */
+@keyframes suggest-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.suggest-drop {
+  animation: suggest-drop 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: top center;
+}
+
+/* Panel beli halaman detail: wadah kaca solid, cuma ujung bawahnya yang
+   lumer ke background hitam plek contekan. Fade-nya di ::before (lapisan
+   background saja) — konten (judul, harga, tombol, ikon) render di atasnya,
+   TIDAK ikut pudar. Mask mulai fade di 88% (12% terbawah aja). */
+.panel-fade {
+  isolation: isolate;
+}
+.panel-fade::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 0.75rem;
+  background: linear-gradient(
+    to bottom,
+    rgb(59 76 96 / 0.85) 0%,
+    rgb(35 35 43 / 0.9) 30%,
+    rgb(35 35 43 / 0.9) 45%,
+    rgb(35 35 43 / 0.35) 66%,
+    transparent 100%
+  );
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 50%, transparent 100%);
+}
